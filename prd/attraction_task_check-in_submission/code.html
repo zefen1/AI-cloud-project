@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attraction Task Check-in - TravelCheck</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102318",
+                        "surface-dark": "#183423",
+                        "surface-darker": "#112a1e",
+                        "border-dark": "#224932",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102318;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #224932;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25f478;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display selection:bg-primary selection:text-background-dark">
+<div class="flex flex-col h-screen overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark px-6 py-4 bg-white dark:bg-background-dark shrink-0 z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">TravelCheck</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    Mainnet Beta
+                </div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-background-dark text-sm font-bold leading-normal hover:bg-opacity-90 transition-all shadow-[0_0_15px_rgba(37,244,120,0.3)]">
+<span class="material-symbols-outlined mr-2 text-[20px]">account_balance_wallet</span>
+<span class="truncate">0x4a...8f92</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-border-dark" data-alt="User avatar profile picture abstract" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTGTqYyoUd4ELNXYSRbc00k--84ZKlb_dYADspaGsnxhsGRAoP556bFbJQurCSvYLCort82CrpvG1dEOMCj2jFL1wxPei7BT0YsYCqtMPSc7ZbhHGS7QoFtGuk1EWBRk3ycv6EOvmazrm5DYp1s_kwKEzNCALNJrvVzJ40fZZK84oD1h7vnLNi-gFwydI1jBEknLtvAiKcgdq-YTJTVfPHb6P0230XFVnoPHa5mwhjrZiyRU0W4c0-c7Kz3W0_1urlrHtIeLfHqEsd");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Side Navigation -->
+<aside class="hidden lg:flex w-72 flex-col border-r border-slate-200 dark:border-border-dark bg-white dark:bg-background-dark overflow-y-auto z-10">
+<div class="flex flex-col gap-2 p-4">
+<div class="px-4 py-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Menu</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined fill-current">check_circle</span>
+<p class="text-sm font-medium">My Tasks</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">travel_explore</span>
+<p class="text-sm font-medium">Explore</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">account_balance_wallet</span>
+<p class="text-sm font-medium">Wallet</p>
+</a>
+<div class="px-4 py-2 mt-4">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">History</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">history</span>
+<p class="text-sm font-medium">Past Check-ins</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-surface-darker/50 p-4 md:p-8 lg:p-12 scroll-smooth">
+<div class="max-w-[1000px] mx-auto flex flex-col gap-8 pb-20">
+<!-- Page Heading -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+<a class="hover:underline" href="#">Back to Tasks</a>
+</div>
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            Attraction Task Check-in
+                        </h1>
+<p class="text-slate-500 dark:text-[#90cba8] text-lg font-normal leading-normal max-w-2xl">
+                            Submit your proof of visit to claim rewards. Ensure your location services are enabled for verification.
+                        </p>
+</div>
+<!-- Task Summary Card -->
+<div class="rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark overflow-hidden shadow-sm">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/3 bg-slate-200 dark:bg-slate-800 relative h-48 md:h-auto">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Great Wall of China landscape view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTa8SxJlBzNaqPhDmV3_WsZlf5vP0_l9bh0SZ4iaCQ60n9L_fglpDjSy3uV1SZXhZM6xpExgMXKXU4MlPqPuQrtMTTno1TAXURppTtgDwPJ4n5FmelUX7bRJBD98JpfIb61CqY4q6L1CzMcF50-Dfpz1bJgk83jpBdJ9MVslsBW_6w0wu7fGBoSTkywLD3wo6_e2v1-uMB3p9k82sXPKHxFMXqOYrsojWaG3S5ulcHU4LRsxcguNr-HAtdmb3ED79rNDrZEUOg7z4y");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden"></div>
+<div class="absolute bottom-4 left-4 md:hidden">
+<span class="bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">Medium Difficulty</span>
+</div>
+</div>
+<div class="flex-1 p-6 flex flex-col justify-center gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">The Great Wall - Mutianyu Section</h2>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Beijing, China • 40.4319° N, 116.5704° E</span>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end">
+<span class="bg-primary/20 text-primary border border-primary/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Active Task</span>
+</div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-border-dark w-full"></div>
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase font-bold">Reward</span>
+<span class="text-xl font-bold text-primary">50 TVL</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase font-bold">Verification</span>
+<span class="text-xl font-bold text-white">Photo + Key</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase font-bold">Time Left</span>
+<span class="text-xl font-bold text-white">4h 23m</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 1: Visual Proof -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center text-background-dark font-bold text-sm">1</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Visual Proof</h3>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center gap-4 transition-all hover:bg-slate-50 dark:hover:bg-surface-darker group cursor-pointer relative overflow-hidden">
+<input accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" type="file"/>
+<div class="size-16 rounded-full bg-slate-100 dark:bg-surface-darker flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-4xl text-slate-400 dark:text-slate-500 group-hover:text-primary transition-colors">add_a_photo</span>
+</div>
+<div class="flex flex-col gap-1 z-0">
+<p class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Click to upload or drag &amp; drop</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">SVG, PNG, JPG or GIF (max. 10MB)</p>
+</div>
+<div class="bg-amber-500/10 border border-amber-500/20 rounded-lg px-4 py-2 flex items-center gap-2 max-w-md mt-2">
+<span class="material-symbols-outlined text-amber-500 text-sm">warning</span>
+<p class="text-xs text-amber-500 font-medium text-left">Requirement: Photo MUST contain original EXIF data with GPS coordinates matching the location.</p>
+</div>
+</div>
+</section>
+<!-- Step 2: Verification Input -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-border-dark text-slate-500 dark:text-slate-300 flex items-center justify-center font-bold text-sm border border-slate-300 dark:border-slate-600">2</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">On-Site Verification</h3>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-xl p-6 md:p-8">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Enter 16-Character Staff Key</label>
+<p class="text-sm text-slate-400 dark:text-slate-500 mb-2">Locate the verification code on the physical signage or ask a staff member.</p>
+<div class="flex flex-wrap gap-2 md:gap-4 items-center">
+<input class="bg-slate-50 dark:bg-surface-darker border border-slate-300 dark:border-border-dark text-slate-900 dark:text-white text-center text-xl md:text-2xl font-mono p-3 rounded-lg w-20 md:w-24 focus:ring-2 focus:ring-primary focus:border-primary uppercase outline-none" maxlength="4" placeholder="XXXX" type="text"/>
+<span class="text-slate-300 dark:text-border-dark text-2xl font-bold">-</span>
+<input class="bg-slate-50 dark:bg-surface-darker border border-slate-300 dark:border-border-dark text-slate-900 dark:text-white text-center text-xl md:text-2xl font-mono p-3 rounded-lg w-20 md:w-24 focus:ring-2 focus:ring-primary focus:border-primary uppercase outline-none" maxlength="4" placeholder="XXXX" type="text"/>
+<span class="text-slate-300 dark:text-border-dark text-2xl font-bold">-</span>
+<input class="bg-slate-50 dark:bg-surface-darker border border-slate-300 dark:border-border-dark text-slate-900 dark:text-white text-center text-xl md:text-2xl font-mono p-3 rounded-lg w-20 md:w-24 focus:ring-2 focus:ring-primary focus:border-primary uppercase outline-none" maxlength="4" placeholder="XXXX" type="text"/>
+<span class="text-slate-300 dark:text-border-dark text-2xl font-bold">-</span>
+<input class="bg-slate-50 dark:bg-surface-darker border border-slate-300 dark:border-border-dark text-slate-900 dark:text-white text-center text-xl md:text-2xl font-mono p-3 rounded-lg w-20 md:w-24 focus:ring-2 focus:ring-primary focus:border-primary uppercase outline-none" maxlength="4" placeholder="XXXX" type="text"/>
+</div>
+</div>
+<div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-blue-400 mt-0.5">info</span>
+<div class="flex flex-col gap-1">
+<p class="text-sm font-bold text-blue-100">Alternative Method: NFC</p>
+<p class="text-xs text-blue-200/70">If your device supports NFC, you can tap the check-in terminal directly instead of entering the code.</p>
+<button class="mt-2 text-xs bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded w-fit transition-colors">
+                                                Activate NFC Reader
+                                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Confirm Action -->
+<section class="flex flex-col gap-4 mt-4">
+<div class="flex items-center justify-between p-4 rounded-lg border border-slate-200 dark:border-border-dark bg-slate-100 dark:bg-surface-darker">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">gas_meter</span>
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 uppercase font-bold">Estimated Gas Fee</span>
+<span class="text-sm font-mono text-slate-700 dark:text-slate-300">0.002 ETH (~$3.50)</span>
+</div>
+</div>
+<div class="h-8 w-px bg-slate-300 dark:bg-border-dark mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs text-slate-500 uppercase font-bold">Total Reward</span>
+<span class="text-sm font-bold text-primary">50 TVL</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-[#1ee06b] text-background-dark text-lg font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(37,244,120,0.4)] transition-all transform active:scale-[0.99] flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">verified</span>
+                            Sign &amp; Submit to Blockchain
+                        </button>
+<p class="text-center text-xs text-slate-400">By clicking confirm, you agree to the TravelCheck Terms of Service and Anti-Fraud Policy.</p>
+</section>
+</div>
+</main>
+</div>
+<!-- Toast / Status Sidebar Simulation (Bottom Right) -->
+<div class="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
+<div class="bg-surface-dark border border-border-dark rounded-lg shadow-2xl p-4 w-80 flex items-start gap-3 animate-pulse">
+<div class="size-2 rounded-full bg-yellow-400 mt-2"></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold text-white">Wallet Connected</p>
+<p class="text-xs text-slate-400">Waiting for transaction signature...</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

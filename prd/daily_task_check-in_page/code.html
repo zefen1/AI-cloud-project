@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck - Daily Task Check-in</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "primary-dark": "#1dbf5d",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#111814",
+                        "card-dark": "#1b2720",
+                        "border-dark": "#28392f",
+                        "accent-green": "#3b5445",
+                        "text-muted": "#9cbaa8"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white flex flex-col font-display selection:bg-primary selection:text-background-dark">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-border-dark bg-background-dark/80 backdrop-blur-md px-4 py-3 md:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">TravelCheck</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-text-muted hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Daily Tasks</a>
+<a class="text-text-muted hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="text-text-muted hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex flex-col items-end mr-2">
+<span class="text-xs text-text-muted">Balance</span>
+<span class="text-sm font-bold text-white">1,240 TVL</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary-dark transition-colors text-background-dark text-sm font-bold leading-normal tracking-wide shadow-[0_0_15px_rgba(37,244,120,0.3)]">
+<span class="truncate">0x4a...3B29</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-card-dark text-white hover:bg-border-dark transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-card-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-border-dark" data-alt="User profile avatar with abstract geometric pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApRl0FKW9AwCDApHUJZw68rM8xQCw_dbUXStXvQ_c2U85O8rNE8CEvD6Y5dRUDo-Kv6FVMEkT5Cb87EJMwz0Q-emGX-lSEW12FVs6VTagVpPuOSZETDWW1t2Ed8go5EnL6f_1mMeUjR5eOkXwfezND_c_nbsKMiPU6JtsL8xqzEqRK9ghzYWmHui21c5gRJwwWdZorVarkSC0605hYySlw_NHI5EJzW-29KzuXwUMTgMGPGGkKDXZZLr3OrlWKEoNdRWQRkdSs4Emn");'></div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center py-8 px-4 md:px-10 lg:px-40">
+<div class="max-w-[1200px] w-full flex flex-col gap-8">
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-dark pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-base">verified</span>
+                        Mode One Active
+                    </div>
+<h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-tight">Daily Check-in</h1>
+<p class="text-text-muted text-base md:text-lg font-normal max-w-2xl">Complete daily challenges to maintain your streak and earn TVL tokens. Quality submissions unlock rare Red Packets.</p>
+</div>
+<div class="flex items-center gap-3 bg-card-dark p-3 rounded-xl border border-border-dark">
+<div class="flex flex-col items-center px-4 border-r border-border-dark">
+<span class="text-xs text-text-muted uppercase font-bold">Streak</span>
+<span class="text-xl font-bold text-white">12 Days</span>
+</div>
+<div class="flex flex-col items-center px-4">
+<span class="text-xs text-text-muted uppercase font-bold">Multiplier</span>
+<span class="text-xl font-bold text-primary">1.5x</span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Task & Submission (2/3 width) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Today's Task Card -->
+<div class="bg-card-dark rounded-xl p-1 shadow-lg border border-border-dark overflow-hidden group">
+<div class="relative h-48 rounded-lg overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Scenic mountain landscape with a traveler taking notes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTX92ArTCoxb6893J9Le5FRHBMkA2cprU-wXrJV_Q3dXZfc0bluKPPAtrJrBYMv8GFXjwjbyt3aWWbzLDpqq-oYE2hTPvE2LOMCZe8XVEfSNhTu05lTZVq86T2sEzaLp7hxOPhrS98ByA1HSDXMgds-tuzAbNT1Jrf9cJgJp1E9XL1mppWcdjD123__f_9ixK2Vu7nMeh6w9qD282J1mFTNimeLlaieUVa5xW_Oh3RRPyEaq7M2iJ_CU4utEI_Pp6GPZq1-UPCtw57");'></div>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="bg-primary/20 text-primary border border-primary/30 text-xs font-bold px-2 py-1 rounded backdrop-blur-md mb-2 inline-block">Today's Mission</span>
+<h3 class="text-white text-2xl font-bold">Publish Travel Guide</h3>
+</div>
+<div class="absolute top-4 right-4 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-primary text-sm">timer</span>
+<span class="text-white text-sm font-mono font-medium">Ends in 12:45:30</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4">
+<p class="text-text-muted text-sm leading-relaxed">
+                                Share your latest adventure to inspire others. Write at least 200 words about a hidden gem you visited recently. Include tips on how to get there and best time to visit.
+                            </p>
+<div class="flex flex-wrap gap-4 pt-2">
+<div class="flex items-center gap-2 text-sm text-white bg-background-dark px-3 py-1.5 rounded border border-border-dark">
+<span class="material-symbols-outlined text-primary text-base">payments</span>
+<span>Reward: <span class="font-bold">50-100 TVL</span></span>
+</div>
+<div class="flex items-center gap-2 text-sm text-white bg-background-dark px-3 py-1.5 rounded border border-border-dark">
+<span class="material-symbols-outlined text-yellow-400 text-base">star</span>
+<span>XP: <span class="font-bold">+500</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Submission Area -->
+<div class="bg-card-dark rounded-xl p-6 shadow-lg border border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-white text-lg font-bold">Your Submission</h3>
+<button class="text-primary text-sm font-medium hover:text-primary-dark underline decoration-primary/30 underline-offset-4">Read Guidelines</button>
+</div>
+<!-- Rich Text Input -->
+<div class="flex flex-col gap-4">
+<label class="flex flex-col flex-1 relative group/input">
+<div class="absolute top-3 left-3 flex gap-2">
+<button class="p-1 text-text-muted hover:text-white transition-colors rounded hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-1 text-text-muted hover:text-white transition-colors rounded hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">format_italic</span>
+</button>
+<button class="p-1 text-text-muted hover:text-white transition-colors rounded hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">list</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-1 text-text-muted hover:text-white transition-colors rounded hover:bg-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>
+<span class="text-xs">Add Image</span>
+</button>
+</div>
+<textarea class="form-input w-full resize-none rounded-lg text-white focus:outline-none focus:ring-1 focus:ring-primary border border-border-dark bg-background-dark focus:border-primary min-h-[240px] placeholder:text-text-muted/50 p-4 pt-12 text-base font-normal leading-relaxed transition-all" placeholder="Start writing your 200+ word guide here about a hidden gem you discovered..."></textarea>
+</label>
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<span class="text-white text-sm font-medium">Word Count Requirement</span>
+<span class="text-text-muted text-xs">0 / 200 words</span>
+</div>
+<div class="w-full bg-accent-green/30 rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 15%"></div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex justify-end gap-3 mt-2 pt-4 border-t border-border-dark">
+<button class="px-6 py-2.5 rounded-lg text-white font-medium hover:bg-white/5 transition-colors text-sm">Save Draft</button>
+<button class="px-6 py-2.5 bg-primary hover:bg-primary-dark text-background-dark font-bold rounded-lg shadow-[0_0_15px_rgba(37,244,120,0.4)] hover:shadow-[0_0_20px_rgba(37,244,120,0.6)] transition-all flex items-center gap-2">
+<span>Submit for Audit</span>
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Status & Rewards (1/3 width) -->
+<div class="flex flex-col gap-6">
+<!-- Audit Status -->
+<div class="bg-card-dark rounded-xl p-6 border border-border-dark">
+<h3 class="text-white text-lg font-bold mb-6">Workflow Status</h3>
+<div class="relative pl-4 border-l-2 border-border-dark space-y-8">
+<!-- Step 1: Active -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-card-dark shadow-[0_0_10px_rgba(37,244,120,0.8)]"></div>
+<p class="text-primary text-sm font-bold uppercase mb-1">In Progress</p>
+<p class="text-white font-medium">Writing Content</p>
+<p class="text-xs text-text-muted mt-1">Complete the guide to proceed.</p>
+</div>
+<!-- Step 2: Pending -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-card-dark border-2 border-border-dark ring-4 ring-card-dark"></div>
+<p class="text-text-muted text-sm font-bold uppercase mb-1">Next</p>
+<p class="text-text-muted font-medium">Under Review</p>
+</div>
+<!-- Step 3: Pending -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-card-dark border-2 border-border-dark ring-4 ring-card-dark"></div>
+<p class="text-text-muted text-sm font-bold uppercase mb-1">Locked</p>
+<p class="text-text-muted font-medium">Claim Reward</p>
+</div>
+</div>
+</div>
+<!-- Red Packet Module (Locked State) -->
+<div class="relative bg-gradient-to-br from-[#2a1717] to-[#1a1a1a] rounded-xl p-6 border border-red-900/30 overflow-hidden">
+<!-- Pattern overlay -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ef4444 1px, transparent 1px); background-size: 10px 10px;"></div>
+<div class="relative z-10 flex flex-col items-center text-center gap-3">
+<div class="size-16 rounded-full bg-red-900/20 flex items-center justify-center border border-red-500/20 mb-2">
+<span class="material-symbols-outlined text-red-500 text-3xl opacity-50">redeem</span>
+</div>
+<h3 class="text-white text-lg font-bold">Daily Red Packet</h3>
+<p class="text-text-muted text-xs">Unlock this reward after your submission is successfully audited.</p>
+<button class="w-full mt-2 py-3 bg-white/5 border border-white/10 rounded-lg text-text-muted text-sm font-bold cursor-not-allowed flex items-center justify-center gap-2" disabled="">
+<span class="material-symbols-outlined text-sm">lock</span>
+                                Locked
+                            </button>
+</div>
+</div>
+<!-- Recent Activity / Social Proof -->
+<div class="bg-card-dark rounded-xl p-6 border border-border-dark flex-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-white text-base font-bold">Recent Claims</h3>
+<span class="text-xs text-primary cursor-pointer hover:underline">View All</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="flex items-center gap-3 pb-3 border-b border-white/5">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User avatar 1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8yForEDjvnZof69euACyhG1bPya_ha_HBV1tpXHbM9GbxmsLbyqD06ZLm3BS7y17TIwYsReMH3clLp1TSKPYPv-SvKHcp-bhzLVVs-FOoOMP54wCVOzxVzi0B0ilPmZvxDY5MGKlNzg_StjX-_PnKKgZL_N3fv29wNEo9Qg3sT28D1GSnyHmskiKEgF2Xh5cz_nrxyO9FJfl7KlKn2TH1Yc2p1_HFXXw0UPvFfqe7ASEzyNQGPe9brM6EuhmOpQxyFUa1kbrsftZL");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-white text-sm font-medium truncate">alex_web3</p>
+<p class="text-text-muted text-xs truncate">Published "Tokyo Night"</p>
+</div>
+<span class="text-primary text-xs font-bold whitespace-nowrap">+88 TVL</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3 pb-3 border-b border-white/5">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User avatar 2" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfw-P1jsfvlqmiuCrvtPhYRLXS6R3u9cPf517vFoi7edvGoCXftmrnqcvv56pTYCnNi1vawZi--3FnqEMQNkMi4nvw3T0oMlwoxjzKbbdbv5ZHjGqLrRMvMXhJ7_hPaK8l9f95mX_6ZfuDL6fzjTzt--7SNGg1riJibaToP6PQiqKpDeJpaTGS3-psj8tKuy71CKnAwbvsZ4WlcgTx92uWZlzgNB9VmBc2I_f50QbDQgZZpz1hQxgWZ0tsnI4-jjNi3LKk9YmO-6r9");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-white text-sm font-medium truncate">sarah_travels</p>
+<p class="text-text-muted text-xs truncate">Published "Bali Hidden Beach"</p>
+</div>
+<span class="text-primary text-xs font-bold whitespace-nowrap">+102 TVL</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User avatar 3" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFMvu4kS6jYrj89Am_TY5luoUnAwZJN_DdV6gEKgcTV2NmAcKC1_vqN7V7OKJbBgsiMGCn5bDQTN3DrWnknEukNNuD8Fnko3rAruB9mf6wbaA2hIOCFHxJDBfB4rcOgKToS-WgcNSJKi41axrBxCrnztZl6vJJn0FCUkZQ7iGj3mexTNNZerbgHNOvqy54ZiswvOwp4pDfUZbmXEMWWQEQX2awuxA1L2OuvF6yYYRFqWVuwhfLmL2YHvTTVnnqQpJZhKHACprs86nl");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-white text-sm font-medium truncate">crypto_nomad</p>
+<p class="text-text-muted text-xs truncate">Published "Swiss Alps"</p>
+</div>
+<span class="text-primary text-xs font-bold whitespace-nowrap">+55 TVL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Simple -->
+<footer class="mt-8 border-t border-border-dark py-8 text-center">
+<p class="text-text-muted text-sm">© 2024 TravelCheck DApp. All rights reserved.</p>
+<div class="flex justify-center gap-4 mt-4 text-xs text-text-muted/60">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Smart Contracts</a>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck - Attraction Task Details</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "primary-dark": "#1bc45e",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102318",
+                        "card-dark": "#183023",
+                        "border-dark": "#224932",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#224932] bg-background-light/80 dark:bg-[#102318]/90 backdrop-blur-md px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">TravelCheck</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-card-dark px-3 py-1.5 rounded-full border border-slate-200 dark:border-border-dark">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Mainnet Live
+            </div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-[#102318] text-sm font-bold leading-normal hover:bg-primary-dark transition-colors">
+<span class="truncate">Connect Wallet</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 pb-6 text-sm">
+<a class="text-slate-500 dark:text-[#90cba8] hover:text-primary transition-colors font-medium" href="#">Home</a>
+<span class="text-slate-400 dark:text-[#90cba8]/60">/</span>
+<a class="text-slate-500 dark:text-[#90cba8] hover:text-primary transition-colors font-medium" href="#">Attraction Tasks</a>
+<span class="text-slate-400 dark:text-[#90cba8]/60">/</span>
+<span class="text-slate-900 dark:text-white font-medium">Task #8829-AX</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Attraction & Task Details -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Hero Image Card -->
+<div class="relative group rounded-2xl overflow-hidden border border-slate-200 dark:border-border-dark bg-white dark:bg-card-dark shadow-lg">
+<div class="h-64 sm:h-80 w-full relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent z-10"></div>
+<img alt="Panoramic view of the Great Wall of China winding through green mountains" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKkh2O3nYW8v0nF7K_FGjQ8pMlsqNiSOh0jjzHRSkafgQDTp-PqPLj78xZj_I7ffYr-8gKJRUHi5aDWyFp2QVgsAwaDjedej6ZTlYTGZSRIEEH6Ja9Xo2GRdSxEi1N3xiOR4aczmtXChrSyxPZMnhVG9XcY7VlnSiri4gTNosckxobNXC4oCobOTPrt8MZpTuyXdzxsw6yPskiRz0T5WoWCg2SvPxr2cBIeKOwtEaWPAxALA0djrMPQTcLuElIIlEwTguIspeU4Cfr"/>
+<div class="absolute bottom-0 left-0 w-full p-6 z-20">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 text-xs font-bold bg-primary text-[#102318] rounded uppercase tracking-wider">Active Task</span>
+<span class="px-2 py-1 text-xs font-bold bg-black/50 text-white backdrop-blur-sm rounded border border-white/10 uppercase tracking-wider">Tier 2 Difficulty</span>
+</div>
+<h1 class="text-3xl sm:text-4xl font-bold text-white mb-1">Great Wall of China - Sector 4</h1>
+<div class="flex items-center gap-2 text-gray-300">
+<span class="material-symbols-outlined text-[20px] text-primary">location_on</span>
+<span class="text-sm">Huairou District, China | 40.43° N, 116.57° E</span>
+</div>
+</div>
+<div class="hidden sm:block">
+<div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-lg p-3 text-center min-w-[100px]">
+<span class="block text-xs text-gray-400 uppercase tracking-wider">Distance</span>
+<span class="text-xl font-bold text-white">2.4 km</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Description & Verification Requirements -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Task Description -->
+<div class="bg-white dark:bg-card-dark rounded-2xl p-6 border border-slate-200 dark:border-border-dark">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+                            Task Overview
+                        </h3>
+<p class="text-slate-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
+                            This is a synchronized exploration task. Explorers must physically reach the Sector 4 beacon of the Great Wall. To verify your visit, you must be within the geofenced area and scan the dynamic QR code located at the visitor center.
+                        </p>
+<div class="space-y-3">
+<div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-white/5">
+<span class="text-sm text-slate-500 dark:text-gray-400">Task ID</span>
+<span class="text-sm font-mono font-bold text-slate-900 dark:text-primary">#8829-AX</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-white/5">
+<span class="text-sm text-slate-500 dark:text-gray-400">Contract</span>
+<div class="flex items-center gap-1 text-sm text-slate-900 dark:text-white cursor-pointer hover:text-primary transition-colors">
+<span class="font-mono">0x71...9A2</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-white/5">
+<span class="text-sm text-slate-500 dark:text-gray-400">Time Limit</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">48 Hours upon start</span>
+</div>
+</div>
+</div>
+<!-- Verification Methods -->
+<div class="bg-white dark:bg-card-dark rounded-2xl p-6 border border-slate-200 dark:border-border-dark flex flex-col">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                            Verification Requirements
+                        </h3>
+<div class="flex-1 space-y-3">
+<!-- Requirement 1 -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-border-dark/50">
+<div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-blue-400">satellite_alt</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-slate-900 dark:text-white">GPS Geofence</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">Must be within 50m radius</p>
+</div>
+<span class="material-symbols-outlined text-green-500" title="Available">check_circle</span>
+</div>
+<!-- Requirement 2 -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-border-dark/50">
+<div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-purple-400">qr_code_scanner</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-slate-900 dark:text-white">On-site QR Scan</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">Scan code at Ticket Booth 2</p>
+</div>
+<span class="material-symbols-outlined text-slate-600" title="Pending">radio_button_unchecked</span>
+</div>
+<!-- Staking Requirement -->
+<div class="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">lock</span>
+<div>
+<p class="font-bold text-sm text-slate-900 dark:text-white">Staking Required</p>
+<p class="text-xs text-slate-500 dark:text-gray-300">You must stake <span class="font-bold text-primary">50 $TVL</span> to accept this task. Stake is returned upon successful verification.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Section -->
+<div class="w-full bg-white dark:bg-card-dark rounded-2xl p-1 border border-slate-200 dark:border-border-dark">
+<div class="relative w-full aspect-[21/9] rounded-xl overflow-hidden bg-slate-100 dark:bg-background-dark">
+<img alt="Map view showing geofence radius around Great Wall sector 4" class="w-full h-full object-cover opacity-80" data-location="Great Wall of China" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkDR83vz0EA-5PsnTZRjksRrQU-efR8QkO02CoV5-36VSqNuALgImSXXMH5eL-P5A9HEwYzxaW1zqRi1tOLRFwQcs4MFS9P3ERAgGdNNaRUrRCi45zZCB5Z_ZfFZU4fDXyJpLUy_vSA7PlPwMDj1QkEItaDI4lu8Vzte5Z3n7jZ0aOOXKfn_jzS4fSN-eceUNsjEqpkrAIw4VBJiGPT5gqh9c7E5jfIIlFLkXv9VXNjc8DcoiMbldoygJEcIBH0c9qRdpPg4v3Vca8"/>
+<!-- Overlay UI for map -->
+<div class="absolute top-4 right-4 bg-white dark:bg-card-dark/90 backdrop-blur border border-slate-200 dark:border-white/10 p-2 rounded-lg shadow-lg">
+<span class="material-symbols-outlined text-slate-700 dark:text-white cursor-pointer hover:text-primary">my_location</span>
+</div>
+<div class="absolute bottom-4 left-4 bg-white dark:bg-card-dark/90 backdrop-blur border border-slate-200 dark:border-white/10 px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-ping"></div>
+<span class="text-xs font-bold text-slate-900 dark:text-white">Geofence Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Rewards & Actions (Sticky) -->
+<div class="lg:col-span-4 relative">
+<div class="sticky top-24 space-y-6">
+<!-- Reward Vault Card -->
+<div class="bg-gradient-to-br from-[#1c3829] to-[#102318] rounded-2xl p-6 border border-primary/30 relative overflow-hidden shadow-xl">
+<!-- Background glow effect -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 text-center mb-6">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-1 block">Total Reward Value</span>
+<h2 class="text-4xl font-bold text-white tracking-tight flex items-center justify-center gap-1">
+                                250 <span class="text-lg text-primary font-normal">$TVL</span>
+</h2>
+</div>
+<div class="space-y-3 relative z-10">
+<!-- Token Reward -->
+<div class="flex items-center gap-3 bg-black/20 p-3 rounded-xl border border-white/5">
+<div class="size-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center shadow-lg text-white font-bold text-xs border border-white/20">
+                                    $TVL
+                                </div>
+<div class="flex-1">
+<p class="text-white font-bold text-sm">Fixed Reward</p>
+<p class="text-xs text-gray-400">Guaranteed upon completion</p>
+</div>
+<span class="text-primary font-bold font-mono">+50</span>
+</div>
+<!-- NFT Badge -->
+<div class="flex items-center gap-3 bg-black/20 p-3 rounded-xl border border-white/5">
+<div class="size-10 rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center shadow-lg text-white border border-white/20">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold text-sm">Explorer Badge</p>
+<p class="text-xs text-gray-400">Exclusive NFT Drop</p>
+</div>
+<span class="text-xs bg-white/10 px-2 py-0.5 rounded text-white">Rare</span>
+</div>
+<!-- Lottery Ticket -->
+<div class="flex items-center gap-3 bg-black/20 p-3 rounded-xl border border-white/5">
+<div class="size-10 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-lg text-white border border-white/20">
+<span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold text-sm">Lucky Draw</p>
+<p class="text-xs text-gray-400">Win up to 1000 $TVL</p>
+</div>
+<span class="text-primary font-bold font-mono">1x</span>
+</div>
+</div>
+</div>
+<!-- Action Card -->
+<div class="bg-white dark:bg-card-dark rounded-2xl p-6 border border-slate-200 dark:border-border-dark shadow-lg">
+<div class="flex justify-between items-center mb-6">
+<span class="text-sm font-medium text-slate-500 dark:text-gray-400">Deadline</span>
+<div class="flex items-center gap-1.5 text-slate-900 dark:text-white font-mono font-bold bg-slate-100 dark:bg-background-dark px-3 py-1 rounded-lg border border-slate-200 dark:border-border-dark">
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+                                48h : 12m : 05s
+                            </div>
+</div>
+<!-- Wallet Check / Button -->
+<div class="space-y-4">
+<div class="flex justify-between text-xs text-slate-500 dark:text-gray-400 mb-1">
+<span>Wallet Balance</span>
+<span>1,240.50 $TVL</span>
+</div>
+<!-- Progress bar for visual balance check (concept) -->
+<div class="w-full bg-slate-100 dark:bg-background-dark rounded-full h-1.5 mb-4">
+<div class="bg-primary h-1.5 rounded-full w-full shadow-[0_0_10px_rgba(37,244,120,0.5)]"></div>
+</div>
+<button class="w-full group relative flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary hover:bg-primary-dark text-[#102318] py-4 font-bold text-lg transition-all duration-300 shadow-[0_4px_14px_rgba(37,244,120,0.4)] hover:shadow-[0_6px_20px_rgba(37,244,120,0.6)] hover:-translate-y-0.5">
+<span class="material-symbols-outlined">rocket_launch</span>
+                                Participate in Task
+                            </button>
+<p class="text-center text-[11px] text-slate-400 dark:text-gray-500 leading-tight">
+                                By participating, you agree to the Smart Contract terms. <br/>
+<a class="underline hover:text-primary" href="#">View Contract Audit</a>
+</p>
+</div>
+</div>
+<!-- Participants Preview -->
+<div class="bg-transparent p-2">
+<p class="text-xs text-slate-500 dark:text-gray-400 mb-3 font-medium uppercase tracking-wide">Recent Explorers</p>
+<div class="flex items-center -space-x-3">
+<img alt="User Avatar 1" class="w-8 h-8 rounded-full border-2 border-background-light dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHInY9G0fTJilzIfl7xFgNLLivYycMTCX2H6P2tCH2gkg7SodeVEG-r778AmOQFPZpv3JuKP1gK_q5uXOUEj_-x6mhRdUS8OkurEYh2Y05XKSAQ6hKXQwF2BsS1fWOGN5xdh1TzwfLeaeSm6r8wd1LsD-mH66-AKulJGBiao6O7o5FG-GhAMHsVw2KrwfNmlb1QDngvNe6Ot30fdXf76Etwy6SH8A5K5evvgC6GFCIwdOjo5RlMQvmIMQdWBy6QCnDb68jKOVoRlOh"/>
+<img alt="User Avatar 2" class="w-8 h-8 rounded-full border-2 border-background-light dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlDHaMDWGvZrsIcYz1Jy-yRsYaokStOZDLQBBceurQypKrPuPArzp3lr3DWZG2o4oKGZL132b7wz9PG54MIt5_Vmh5Lj8UazcdnlHaRKr_Lymvd1E0wJkiPa4OtIPEEb7GWFebRu_1rht6QZhsvaPJIQUrsR0UXEfbNuXVD7tr5Mk_2zF7JK2Z2yw4I-GDyE6HE5Yi-roMIj7J-dz1G4GGQKAijHCkM31xfxrIntW1NfM0lg4HXRpAkZPue_g-rIjReIFzdjWXUFuV"/>
+<img alt="User Avatar 3" class="w-8 h-8 rounded-full border-2 border-background-light dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFvylW08CEX_Oht7-nxfmtyC6fBVGo6wI0UZmYDXZanGm7lmK0QX1msuXKNMiYHqWhekSVA0NcmhApU2mJAhOrcuJizt8H0bM-cBWMFbBeCE2sO5Og-6WpgHieyp47V1avv4mznhyDrmKhQ6Va4z5MNk4V6ap5FRKrBfiqvEPRFXVa8oAMbz0Afh7uqUVS78egCKud4NQQ9RibZl_xITlZVQIdMtDZQEGB-rcKtV41DDmoMHOr5O3jYixIGG8FT4LNCY-qwkZqBp6V"/>
+<div class="w-8 h-8 rounded-full border-2 border-background-light dark:border-background-dark bg-slate-200 dark:bg-card-dark text-[10px] flex items-center justify-center font-bold text-slate-600 dark:text-gray-300">
+                                +42
+                            </div>
+<div class="ml-6 text-xs text-slate-500 dark:text-gray-400">
+<span class="font-bold text-slate-900 dark:text-white">128</span> currently active
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

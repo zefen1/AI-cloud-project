@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck - Daily Task Recovery</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "primary-hover": "#1ee068",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102217", // Matches detailed instruction config
+                        "card-dark": "#152c20",
+                        "border-dark": "#224932",
+                        "text-muted": "#90cba8",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102217; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #224932; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25f478; 
+        }
+        
+        .glow-hover:hover {
+            box-shadow: 0 0 15px rgba(37, 244, 120, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-row overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden md:flex w-64 flex-col border-r border-border-dark bg-background-dark h-full shrink-0 z-20">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand -->
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shadow-[0_0_10px_rgba(37,244,120,0.3)]" data-alt="TravelCheck abstract blockchain logo in neon green" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXSiTw0_kZa-t4hQnxkbsbGrd7IAqXcMYRWicwIhYGngNLjdNls8OA0kqaNSVtmD7YdpmvzsTVDEuhCJ-MU4f7R1fJ5g3x5mVxEeN2QLrqrhieYGcQMP7z4KJGcKZbIteG8vRMXQXxEe0AxpfuccUi2ljLjTcyYRDkjc6FcK5SJcLhJvU3iq9EjK5ZL4KSQ49CTu2Z1bUgNJ_uNGSHKOUbmwOUpw8jjev6wcmXxD8upplJqHjwbXYeURYizYdsD2PMIqOpF68AAnzf");'>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold leading-none tracking-tight">TravelCheck</h1>
+<p class="text-text-muted text-xs font-normal mt-1">Web3 Travel Platform</p>
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-border-dark text-white shadow-sm border border-border-dark/50" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<p class="text-sm font-bold">Daily Tasks</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">account_balance_wallet</span>
+<p class="text-sm font-medium">Wallet</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">leaderboard</span>
+<p class="text-sm font-medium">Leaderboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<!-- User Mini Profile -->
+<div class="flex items-center gap-3 px-3 py-3 mt-auto rounded-lg bg-white/5 border border-white/5">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="User profile avatar showing a stylized traveler" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBU4JQGtOvt-cBaGmBn4kTUB-6hKejK-1P9cPavQVJbZJ4be97zHUjz33zY7FmLJTcdUu_gK9UlLXGGfQHMZTMHf5RVgopnqeGZjqv-wEHjPu6YQu1DwwDJoYJAh_Jjqqq9pAHeb-bW_lOsPDs4BgIGEYiXH29s3y5pNqCMikx1Ar4O8RRgdXlREFdvAJfv1BFDKsLpFjTH-qrEzyocpOfNcJvY9Id3AH0uCzjBss9SQDgaWVSSCKfKJrgJaWUcNbVWjBvF3MHaob16");'>
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold truncate text-white">Alex_Traveler</p>
+<p class="text-xs text-primary truncate">Level 12</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex flex-col flex-1 h-full overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-background-dark/50 backdrop-blur-md px-8 py-4 shrink-0 z-10 sticky top-0">
+<div class="flex items-center gap-4 text-white">
+<button class="size-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-text-muted hover:text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Mode One: Daily Check-in Recovery</h2>
+<p class="text-text-muted text-xs">Recover missed days to maintain your streak</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-border-dark/50 border border-border-dark">
+<span class="material-symbols-outlined text-primary text-[18px]">token</span>
+<span class="text-sm font-bold text-white">1,240 TCHECK</span>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center size-10 rounded-lg bg-border-dark text-white hover:bg-white/10 transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-border-dark"></span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-lg bg-border-dark text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-border-dark pb-6">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-black text-white tracking-tight">Make-up Check-in</h1>
+<p class="text-text-muted text-lg">You missed a few days. Complete special tasks to reclaim your rewards and keep your 12-day streak alive.</p>
+</div>
+<!-- Make-up Quota Pill -->
+<div class="flex items-center gap-3 bg-card-dark border border-primary/30 rounded-xl p-4 shadow-[0_0_20px_rgba(37,244,120,0.05)]">
+<div class="relative size-12">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<circle class="stroke-current text-white/10" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-current text-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="66" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute top-0 left-0 size-full flex items-center justify-center">
+<span class="text-xs font-bold text-white">1/3</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-sm">Chances Remaining</span>
+<span class="text-text-muted text-xs">Resets in 14 days</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Stats & Calendar -->
+<div class="col-span-1 lg:col-span-4 flex flex-col gap-6">
+<!-- Quick Stats Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1 rounded-xl bg-card-dark border border-border-dark p-4">
+<p class="text-2xl font-bold text-white">12 Days</p>
+<div class="flex items-center gap-1 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+                                    Current Streak
+                                </div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-card-dark border border-border-dark p-4">
+<p class="text-2xl font-bold text-white">540</p>
+<div class="flex items-center gap-1 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+                                    $TCHECK Earned
+                                </div>
+</div>
+</div>
+<!-- Calendar Widget -->
+<div class="flex flex-col rounded-2xl bg-card-dark border border-border-dark overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-border-dark bg-white/5">
+<p class="text-white font-bold pl-2">October 2023</p>
+<div class="flex gap-1">
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-white/10 text-white"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-white/10 text-white"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+<div class="p-4">
+<div class="grid grid-cols-7 mb-2 text-center">
+<span class="text-xs font-bold text-text-muted py-2">S</span>
+<span class="text-xs font-bold text-text-muted py-2">M</span>
+<span class="text-xs font-bold text-text-muted py-2">T</span>
+<span class="text-xs font-bold text-text-muted py-2">W</span>
+<span class="text-xs font-bold text-text-muted py-2">T</span>
+<span class="text-xs font-bold text-text-muted py-2">F</span>
+<span class="text-xs font-bold text-text-muted py-2">S</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm">
+<!-- Empty days -->
+<span></span><span></span><span></span><span></span>
+<!-- Days -->
+<button class="size-9 flex items-center justify-center rounded-full text-white/40 hover:bg-white/5">1</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white/40 hover:bg-white/5">2</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white/40 hover:bg-white/5">3</button>
+<!-- Completed Streak -->
+<button class="size-9 flex items-center justify-center rounded-full bg-primary/20 text-primary font-bold border border-primary/50 relative group">
+                                        4
+                                        <div class="absolute -bottom-1 size-1 rounded-full bg-primary"></div>
+</button>
+<button class="size-9 flex items-center justify-center rounded-full bg-primary/20 text-primary font-bold border border-primary/50 relative">5</button>
+<button class="size-9 flex items-center justify-center rounded-full bg-primary/20 text-primary font-bold border border-primary/50 relative">6</button>
+<button class="size-9 flex items-center justify-center rounded-full bg-primary/20 text-primary font-bold border border-primary/50 relative">7</button>
+<button class="size-9 flex items-center justify-center rounded-full bg-primary/20 text-primary font-bold border border-primary/50 relative">8</button>
+<!-- Missed Day (Recoverable) -->
+<button class="relative size-9 flex items-center justify-center rounded-full bg-transparent text-white font-bold border-2 border-primary border-dashed animate-pulse cursor-pointer hover:bg-primary hover:text-background-dark transition-colors">
+                                        9
+                                        <span class="absolute -top-1 -right-1 flex size-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full size-3 bg-primary"></span>
+</span>
+</button>
+<!-- Missed Day (Too late) -->
+<button class="size-9 flex items-center justify-center rounded-full bg-red-500/10 text-red-500 font-medium border border-red-500/20 opacity-60">10</button>
+<!-- Normal days -->
+<button class="size-9 flex items-center justify-center rounded-full text-white hover:bg-white/10">11</button>
+<button class="size-9 flex items-center justify-center rounded-full bg-primary text-background-dark font-bold shadow-[0_0_10px_rgba(37,244,120,0.5)]">12</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white hover:bg-white/10">13</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white hover:bg-white/10">14</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white hover:bg-white/10">15</button>
+<button class="size-9 flex items-center justify-center rounded-full text-white hover:bg-white/10">16</button>
+</div>
+<!-- Legend -->
+<div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-white/5 text-[11px] text-text-muted justify-center">
+<div class="flex items-center gap-1.5"><div class="size-2 rounded-full bg-primary"></div>Done</div>
+<div class="flex items-center gap-1.5"><div class="size-2 rounded-full border border-dashed border-primary"></div>Make-up</div>
+<div class="flex items-center gap-1.5"><div class="size-2 rounded-full bg-red-500/50"></div>Missed</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Task Selection -->
+<div class="col-span-1 lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">playlist_add_check</span>
+                                Select a Recovery Task
+                            </h3>
+<span class="text-sm text-text-muted">Recovering for: <span class="text-white font-bold">Oct 9th</span></span>
+</div>
+<!-- Task Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Task Card 1: Social -->
+<div class="group relative flex flex-col justify-between rounded-xl bg-card-dark border border-border-dark p-5 hover:border-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,244,120,0.1)] cursor-pointer">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">Easy</span>
+</div>
+<div class="flex flex-col gap-3 mb-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-[#1da1f2]/20 text-[#1da1f2]">
+<svg class="size-5" fill="currentColor" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</div>
+<h4 class="text-lg font-bold text-white">Share Streak on X</h4>
+<p class="text-sm text-text-muted leading-relaxed">Post your current TravelCheck status to Twitter/X with the hashtag #TravelCheck.</p>
+</div>
+<button class="mt-auto w-full rounded-lg bg-white/5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/10 group-hover:bg-primary group-hover:text-background-dark">
+                                    Select Task
+                                </button>
+</div>
+<!-- Task Card 2: Content (Double Strategy) -->
+<div class="group relative flex flex-col justify-between rounded-xl bg-card-dark border border-primary p-5 shadow-[0_0_15px_rgba(37,244,120,0.1)] cursor-pointer">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-400 ring-1 ring-inset ring-orange-400/20">Hard</span>
+</div>
+<div class="flex flex-col gap-3 mb-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-orange-500/20 text-orange-500">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<h4 class="text-lg font-bold text-white">Publish Double Strategy</h4>
+<p class="text-sm text-text-muted leading-relaxed">Write and publish a detailed travel guide (min 500 words) for a new location.</p>
+</div>
+<button class="mt-auto w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-background-dark shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all">
+                                    Active Task
+                                </button>
+</div>
+<!-- Task Card 3: Token Burn -->
+<div class="group relative flex flex-col justify-between rounded-xl bg-card-dark border border-border-dark p-5 hover:border-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,244,120,0.1)] cursor-pointer">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/20">Instant</span>
+</div>
+<div class="flex flex-col gap-3 mb-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-purple-500/20 text-purple-500">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+<h4 class="text-lg font-bold text-white">Burn 50 $TCHECK</h4>
+<p class="text-sm text-text-muted leading-relaxed">Instantly recover the day by burning tokens from your wallet.</p>
+</div>
+<button class="mt-auto w-full rounded-lg bg-white/5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/10 group-hover:bg-primary group-hover:text-background-dark">
+                                    Select Task
+                                </button>
+</div>
+<!-- Task Card 4: Referral -->
+<div class="group relative flex flex-col justify-between rounded-xl bg-card-dark border border-border-dark p-5 hover:border-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,244,120,0.1)] cursor-pointer">
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/20">Medium</span>
+</div>
+<div class="flex flex-col gap-3 mb-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-blue-500/20 text-blue-500">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<h4 class="text-lg font-bold text-white">Invite 1 Friend</h4>
+<p class="text-sm text-text-muted leading-relaxed">Refer a new user who completes their identity verification (KYC).</p>
+</div>
+<button class="mt-auto w-full rounded-lg bg-white/5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/10 group-hover:bg-primary group-hover:text-background-dark">
+                                    Select Task
+                                </button>
+</div>
+</div>
+<!-- Active Task Submission Area -->
+<div class="mt-4 rounded-xl border border-primary/30 bg-[#10291e] p-6 relative overflow-hidden">
+<!-- Background Pattern -->
+<div class="absolute top-0 right-0 -mt-10 -mr-10 size-40 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-4 relative z-10">
+<div class="flex items-center justify-between">
+<h4 class="text-white font-bold text-lg">Submission: Publish Double Strategy</h4>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">ID: #TASK-8821</span>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm text-text-muted">Strategy URL / Evidence</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-black/20 border border-border-dark rounded-lg px-4 py-3 text-white placeholder-white/30 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm" placeholder="https://travelcheck.io/strategy/..." type="text"/>
+<button class="px-4 py-2 bg-white/5 border border-border-dark rounded-lg hover:bg-white/10 text-white">
+<span class="material-symbols-outlined">upload_file</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<button class="flex-1 bg-primary hover:bg-primary-hover text-background-dark font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_0_rgba(37,244,120,0.39)]">
+                                        Verify &amp; Submit
+                                        <span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+<button class="px-6 py-3 border border-border-dark rounded-lg text-text-muted hover:text-white hover:bg-white/5 font-medium transition-colors">
+                                        Cancel
+                                    </button>
+</div>
+<p class="text-xs text-center text-text-muted mt-2 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                    Securely processed via Smart Contract
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Footer Spacer -->
+<div class="h-10"></div>
+</main>
+</div>
+</div>
+</body></html>

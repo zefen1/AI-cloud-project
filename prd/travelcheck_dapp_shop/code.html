@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck DApp Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "primary-dark": "#1dbf5e",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1a3526",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102217;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #224932;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25f478;
+        }.scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+</head>
+<body class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-[#102318] dark:text-white font-display overflow-x-hidden selection:bg-primary selection:text-[#102318]">
+<header class="sticky top-0 z-50 w-full border-b border-[#224932] bg-background-dark/80 backdrop-blur-md px-4 py-3 lg:px-10">
+<div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="flex size-8 items-center justify-center rounded bg-primary text-[#102318]">
+<span class="material-symbols-outlined text-2xl">rocket_launch</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">TravelCheck</h2>
+</div>
+<div class="hidden md:flex min-w-[280px] lg:min-w-[400px]">
+<div class="flex w-full items-center rounded-lg bg-surface-dark border border-[#224932] focus-within:border-primary transition-colors">
+<div class="flex h-10 items-center justify-center pl-3 pr-2 text-[#90cba8]">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="h-10 w-full bg-transparent text-sm text-white placeholder-[#90cba8] focus:outline-none border-none focus:ring-0" placeholder="Search gear, digital collectibles..."/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 lg:gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-white hover:text-primary text-sm font-medium transition-colors" href="#">Shop</a>
+<a class="text-[#90cba8] hover:text-white text-sm font-medium transition-colors" href="#">Orders</a>
+<a class="text-[#90cba8] hover:text-white text-sm font-medium transition-colors" href="#">Community</a>
+</nav>
+<div class="flex gap-3">
+<button class="hidden sm:flex h-10 items-center gap-2 rounded-lg bg-surface-dark border border-[#224932] px-3 text-white hover:border-primary/50 transition-all">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-sm font-bold tracking-wide">12,450 TCK</span>
+</button>
+<button class="relative flex h-10 w-10 items-center justify-center rounded-lg bg-surface-dark border border-[#224932] text-white hover:bg-[#224932] transition-colors group">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-[#102318]">2</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-dark border border-[#224932] text-white hover:bg-[#224932] transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="relative flex w-full flex-1">
+<div class="relative flex-1 overflow-y-auto px-4 lg:px-10 py-6 lg:py-10">
+<div class="relative w-full overflow-hidden rounded-2xl bg-surface-dark border border-[#224932] p-6 lg:p-12 mb-12">
+<div class="absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l from-primary/10 to-transparent"></div>
+<div class="relative z-10 flex flex-col md:flex-row gap-8 items-center max-w-7xl mx-auto">
+<div class="flex flex-col gap-6 md:w-1/2">
+<div class="inline-flex w-fit items-center gap-2 rounded-full bg-[#224932]/50 border border-[#224932] px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+<span>New Arrival</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-white">
+                        Exclusive Travel <span class="text-primary">NFT Badges</span>
+</h1>
+<p class="text-[#90cba8] text-lg max-w-md">
+                        Redeem your hard-earned TCK tokens for limited edition virtual collectibles and premium outdoor gear.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-2">
+<button class="h-12 px-6 rounded-lg bg-primary text-[#102318] font-bold hover:bg-primary-dark transition-colors flex items-center gap-2">
+<span>Explore Virtual Goods</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="h-12 px-6 rounded-lg bg-transparent border border-white/20 text-white font-bold hover:bg-white/5 transition-colors">
+                            View Flash Deals
+                        </button>
+</div>
+</div>
+<div class="md:w-1/2 w-full flex justify-center md:justify-end">
+<div class="w-full max-w-md aspect-video md:aspect-square rounded-xl bg-cover bg-center shadow-2xl shadow-primary/20 relative group overflow-hidden" data-alt="Abstract futuristic digital landscape with neon lights representing virtual travel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAg2BEAbKYYlmrmq1dcl2sYJX_aj5qZ5lbjaFIqpM-CWhNu0ESqJFQzLloSNO7l18llmOfO_oxF76wSDa2MwZjDZ08eKFrcDyb_dNGxo3Obg10htkBWdLp1N1PY4SPw6eOcpRu6o1NgkfTbA94562mqWt17u4VBrN6tJaX-ke54j-MUCYJNF4EJYB8kVVnjUAMuxBspjx9GNgtZWxl5iFWEKQar_rTYEE_ZJTbtyvd6u8JL9tGTKeLnUaZ9KJy3Hjcg6mfvtSdFUyWh');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#102217] via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-4 right-4 p-4 bg-surface-dark/90 backdrop-blur-sm rounded-lg border border-[#224932] flex justify-between items-center">
+<div>
+<p class="text-xs text-[#90cba8] uppercase font-bold">Featured Item</p>
+<p class="text-white font-bold">Genesis Traveler Badge #001</p>
+</div>
+<span class="text-primary font-bold font-mono">5,000 TCK</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pb-10">
+<h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-8">Discover Products</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Ultralight camping tent set up in a forest" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKfxbaBxEw9RgRgE6AarZcqiRlVCE52lYNpaMLswCnhwZzq8BnD8Qu-Av6aXjO_7ZhUgTYzc3Dvia8P95Hu8NxJTOMsuYGiVe1Pu77LftLAaspeDCBziYKWjWLz7DJ0D1tYlH9gQ76EpTdGuAee7DTHeMNmr1Tvs8lVEVVGyJkq8dP-1UQgawUdXjM8rdHxeyfJxIS3Gq6CF5wUP7lObKzsQCtlGOPvLq5FhY62JcNwflIYT9XzZWh6R64o8Um7cESZSpgEgH9DTyy');"></div>
+<div class="absolute top-3 right-3 rounded bg-black/60 px-2 py-1 text-xs font-bold text-white backdrop-blur-md">
+                        Stock: 12
+                    </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Ultra-Light Tent X2</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Outdoor Gear</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">2,500 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern noise canceling headphones on a dark surface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV56VV_R_w6fVbFcUgmcxEIITfizdBUPCfMijGFqdUObtI3kVHFsbU0WW_I58tPx_9r_ln3nYrqFgQJTWfW8Ak1Nvny75VJqMOdflTZW0UW-VyXkIF0OKPrYBgSHQsG3YnjNi_O4EO8snpp2OXR6AyC5WlK4h1apu4Es4sO7_Jaxpmymyx_wJng3lXuQsufUoFpDyniM74Spz7_8FyWLLYh71N-0kKLvd_7DeFKFEo4EegBeSj7I_fhJ1Tstu2Qix9ePLCcy7WRPAW');"></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">SonicTravel NC-700</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Electronic Accessories</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">1,200 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Folded dark hoodie with minimal branding" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgCIMFBBWbgfzgxn9Hwoi5A7lS6dl9jUY14zpCrvPZegKZO_hpIyMRnaMIBWHjSyz7F3YMC4EFqPcu84piGlCpB_YwWglak_oN0NMFW360lIklR2eZUM6k5zrz90iL0IbjWQlIrLcWj5zEr-Jb8KAmOl67PWkCqdB7lnlnOa9HuLh455ae_epO0ih0ZM5u2WAJ_HQAxQe1_mSUYqyFGplcK48hlbnr9-7boFRCVBov1kifHdE20y9GvxcyBpJRHgcq6r-vXSveieIR');"></div>
+<div class="absolute top-3 left-3 rounded bg-primary px-2 py-1 text-xs font-bold text-[#102318]">
+                        Best Seller
+                    </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Explorer Hoodie</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Travel Souvenirs</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">450 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-primary/30 shadow-[0_0_15px_rgba(37,244,120,0.1)] hover:border-primary hover:shadow-[0_0_20px_rgba(37,244,120,0.2)] transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="3D rendered golden abstract token object floating in space" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlPZ0Y4g_4qzjCYNKE0rmOlHlFsU0fkjuQdEdt0QxLPw796ZHSrVAJ9bDZW4kP_qS-5L89r_dNzaAKObxZm-ax340L11MVb3C4CAjSkfIkZ4Q0bGJCYXFgGa43tZMzajnP-e_-ujfXQQP6xl2MzZuINZGJyjwClIHPUD0vyGRmrmgehwnv35RL1x57P5zV3obeAc3Cm3hSAdjzhwY4b5Y1UfbaI-unZ2e9HbbzUUFLbSUFmLIpZaWmXSb899UofHGw3kbdSXdYunok');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-1 text-xs font-bold text-primary">
+<span class="material-symbols-outlined text-sm">verified</span> Verified NFT
+                    </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Gold Member Pass</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Virtual Goods</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">5,000 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Portable power bank with charging cable on desk" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCvDtmApe7mYrrOwGtTqcNjTr5mk9jB9BU9_0aYZX1ol3hRs9aYE46vQb6bT57iZfQXRgy-4Nr9w3bdtsenrc1boBj7AbcDBdiLm4imm5JBVuVFcPZkHCK1ynz9GiHIMRPIhlwLsPDQhY8px7IVa4YUuro_x_btjVXTL_b1zUMy4jXWfpLWhF7KL6OO0AwQ7Q51eyyIXTHG_ASZCE9Tx4NYS6nLgkTpcbIZJyPzsPK2cKmWigfM0rWUyHxYcEWFj9xC7c6Zi6Nw3yyL');"></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">PowerCore 20000</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Electronic Accessories</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">800 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Durable travel backpack standing on a rock" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCboAjD3tsHAAK2fcO5XH0t_WRGSn-HgaRYo8cCsm70cfZ207PORG1mzLVU05JLj76ScD1hUh0r0UOBEu80wUoOH0z8riDhPOftIrZMKAWcca7uo967-AUmuEX8G4LJhxx8wyKB7d2ch7CBi4M4RtoETVyM1nmPmfIi9o2ytOQZpfrTS2iJ5PI2Ce9AXzVSJlnAXn4SaUeB2-aV4nt8xzn1Afp93AVxPRW6Zu3skGYcrwp-pxuisSluyg04cyfohwfTcERsdZNIzN9C');"></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Nomad Backpack 40L</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Outdoor Gear</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">1,800 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-[#224932] hover:border-primary/50 transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Hiking boots on trail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2Ut_-_6UJtZxQcMkS6lSm6_1FT4r4SK1GGZ5sc_znZw62ttD94iZDnA_EAQzsX85K5Hk3yV3b61a44FxdmaSth8eoUWMd4LtrF56m8FYmHyxeiZefhlPIS5gsiiCXPR16w8IwBNMILGsLi8UR-dJvUEbbn3GctxlhZbL78WbgBNl8ODYiyOhC2DBPEqM0QAj78QbM7dnZG-r217Y4MvInIjtZ4lC9CB3rQ3Bg_V9URdt80AZigOHKVDFNxkj7aIiMhzD_Dnsg4IDr');"></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Pro Hiking Boots</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Outdoor Gear</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">950 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<div class="group flex flex-col gap-4 rounded-xl bg-surface-dark p-4 border border-primary/30 shadow-[0_0_15px_rgba(37,244,120,0.1)] hover:border-primary hover:shadow-[0_0_20px_rgba(37,244,120,0.2)] transition-all hover:-translate-y-1">
+<div class="relative w-full aspect-square overflow-hidden rounded-lg bg-[#0a160f]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract digital coin with glowing effects" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClVFgfsXjn6Ctr1sJqJYMEeioV-U2y3oDethsvUH4HGdEZCuTQVZ7QdfHqLvdmeao6OENF_1VYGa65_seCwNucUfLnQtDOKCr3SXBeIVRWZ6t1c4KpKzUQjn3cOml1FtpLv1fdH4PZKdEq_9z159eZEKC6t1rdlyyoN8jcZTDHl9VfpuHEDyyUAWoaNYoxWnB3Ci5P-Zi7OWOTj4cEYH8tvq3qQgwm5dWbsHYhcGfOHeIXMWV-pWisZx07Ivl8cCV0EozvK29TCQvF');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-1 text-xs font-bold text-primary">
+<span class="material-symbols-outlined text-sm">verified</span> Limited Edition
+                    </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight line-clamp-1">Rare Travel Token</h3>
+<span class="material-symbols-outlined text-[#90cba8] hover:text-primary cursor-pointer">favorite</span>
+</div>
+<p class="text-sm text-[#90cba8]">Virtual Goods</p>
+</div>
+<div class="mt-auto flex items-center justify-between border-t border-[#224932] pt-4">
+<p class="text-primary font-bold font-mono text-lg">3,000 TCK</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-primary text-[#102318] hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky top-0 right-0 h-screen w-full md:w-[380px] lg:w-[420px] shrink-0 overflow-y-auto border-l border-[#224932] bg-background-dark p-6 lg:p-8 flex flex-col gap-8">
+<div class="w-full rounded-xl bg-surface-dark border border-[#224932] p-6 h-fit">
+<h2 class="text-xl font-bold text-white mb-4">Your Cart (2)</h2>
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex gap-3 items-center">
+<div class="size-12 rounded bg-cover bg-center shrink-0" data-alt="Cart item powerbank" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDT4nIYQl_V3o5QVI5nbJoWUO9Dn-pfQhoJ3I6BAIpIM8CFwNohWbpKF27Fv0Em5tUZKBFP5t4-cB4PDEM8Z3viCtA-WFnas3Va1-5y6yxhHLfu9fWl370ir83oUkeEEoHeud0KX56IfpqkhLMRgM1DFZ-gFrHsOyc7uCBqLvCOAgb8Dm3txyZj4irH0drvbZNdca4Uh65PpVa5stZ3l0kQo0-tOqY2i3d7VFsLOFaqkJVtiKGS88y554A0R9P-jv1Lg1FxQNiTS54J');"></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">PowerCore 20000</p>
+<p class="text-xs text-[#90cba8]">800 TCK</p>
+</div>
+<div class="flex items-center gap-2 bg-[#102217] rounded px-2 py-1">
+<button class="text-[#90cba8] hover:text-white text-xs">-</button>
+<span class="text-xs font-mono text-white">1</span>
+<button class="text-[#90cba8] hover:text-white text-xs">+</button>
+</div>
+</div>
+<div class="flex gap-3 items-center">
+<div class="size-12 rounded bg-cover bg-center shrink-0" data-alt="Cart item headphones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApYrxdFYu4Mt-j0ImAVfz0hW1_RzKwpI8K03n3C1yyKqSgNijo5spEHjWXc4rCX74-8hTPVyQtCOk2vOFSbHfig_KqyA-ZjsK7PrmlMBVG9_ap7b7ZRRXqEqdcg4MNoq_PmwY3srhu0UIfwBBlUB_hNFdqAZaZORTF-tDYKn86dTOKLJsk1j8f0026yS_rXl1ZTB3XbWsYn1hiRtPyLVspSXlIH609r7ZXGuwxt8sEdGyeMM4CMcMqR1ztzHpjbX1Us_9iXu9Peqxl');"></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">SonicTravel NC-700</p>
+<p class="text-xs text-[#90cba8]">1,200 TCK</p>
+</div>
+<div class="flex items-center gap-2 bg-[#102217] rounded px-2 py-1">
+<button class="text-[#90cba8] hover:text-white text-xs">-</button>
+<span class="text-xs font-mono text-white">1</span>
+<button class="text-[#90cba8] hover:text-white text-xs">+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-[#224932] pt-4 mb-4">
+<div class="flex justify-between mb-2">
+<span class="text-sm text-[#90cba8]">Subtotal</span>
+<span class="text-sm font-mono text-white">2,000 TCK</span>
+</div>
+<div class="flex justify-between mb-4">
+<span class="text-sm text-[#90cba8]">Network Fee (Gas)</span>
+<span class="text-sm font-mono text-white">~0.05 TCK</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-base font-bold text-white">Total</span>
+<div class="text-right">
+<span class="block text-xl font-black font-mono text-primary">2,000.05 TCK</span>
+<span class="block text-[10px] text-[#90cba8]">≈ $32.40 USD</span>
+</div>
+</div>
+</div>
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-primary-dark text-[#102318] font-bold text-base transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+                    Confirm Payment
+                </button>
+</div>
+<div class="flex-1 rounded-xl bg-surface-dark border border-[#224932] p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-white">Recent Orders</h2>
+<a class="text-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-[#102217] border border-[#224932]/50 hover:border-[#224932] transition-colors">
+<div class="size-16 shrink-0 rounded bg-cover bg-center" data-alt="Small thumbnail of camping tent" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAF483C2VW2Ii19RyHoanj1MzIknjhZHePiWoj5NTKuaBPjTnEuEw-5Phfra5E2jzPkOOU1G_tfQdHKa7t0MX37knlEd6trSoPn0OPKbNUDS-Ya9GtqYHyRJ1HHiHNS2g_CUn_q6uvX4sb0DdMZUwi285g-IQxH2dtCFapI8VG95RIy6ZvHDHE1mZYv5fnqosss5_drN8q0AP2yKlHbT_t9vBVsvVXCSHBtt7AxL0zjIidm9eb3tFnWlpGR3ewGZtpL1BWEMPsN9v8L');"></div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex justify-between mb-1">
+<h4 class="text-white font-bold text-sm">Order #TCK-8821</h4>
+<span class="text-xs font-mono text-primary font-bold">- 2,500 TCK</span>
+</div>
+<p class="text-xs text-[#90cba8] mb-2">Ultra-Light Tent X2 • Qty: 1</p>
+<div class="flex items-center gap-2">
+<div class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                    Shipped
+                                </div>
+<span class="text-[10px] text-gray-500">Est. Arrival: Oct 24</span>
+</div>
+</div>
+<div class="flex sm:flex-col justify-end gap-2 shrink-0">
+<button class="text-xs px-3 py-1.5 rounded border border-[#224932] text-white hover:bg-[#224932]">Track</button>
+<button class="text-xs px-3 py-1.5 rounded border border-[#224932] text-[#90cba8] hover:text-white hover:bg-[#224932]">Support</button>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-[#102217] border border-[#224932]/50 hover:border-[#224932] transition-colors">
+<div class="size-16 shrink-0 rounded bg-cover bg-center" data-alt="Small thumbnail of hoodie" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsjPQ4rHkkrqensr0WOuJeoJLBkQ9yiMEs1cJteQlBQCtluHwmdZ7B7r4IFRu8zggCsUP42Tt55vh1HFQjWkGX6Ff6zomePc77grBG_qnh15T2NLV2nhLaiIOf7E8K1o46f2Y204hPZjsB7ZsOXjh9FFC9XVkPoTOeqy890EPpT7006q5QB1hBRqDMAr6IjtaJsZgNoB1PjohIXSB0ncjuyxTrBzET3Yi4c7f3NRh9zgvpwUf7EOchxQfsiXKH-pjTY3Zyt-7yajo3');"></div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex justify-between mb-1">
+<h4 class="text-white font-bold text-sm">Order #TCK-8815</h4>
+<span class="text-xs font-mono text-primary font-bold">- 900 TCK</span>
+</div>
+<p class="text-xs text-[#90cba8] mb-2">Explorer Hoodie • Qty: 2</p>
+<div class="flex items-center gap-2">
+<div class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-500/20 text-green-400 border border-green-500/30">
+                                    Delivered
+                                </div>
+<span class="text-[10px] text-gray-500">Oct 12</span>
+</div>
+</div>
+<div class="flex sm:flex-col justify-end gap-2 shrink-0">
+<button class="text-xs px-3 py-1.5 rounded border border-[#224932] text-white hover:bg-[#224932]">Review</button>
+<button class="text-xs px-3 py-1.5 rounded border border-[#224932] text-[#90cba8] hover:text-white hover:bg-[#224932]">Return</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full border-t border-[#224932] bg-background-dark py-8 px-4 lg:px-10 mt-auto">
+<div class="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-[#90cba8]">© 2023 TravelCheck DApp. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-[#90cba8] hover:text-primary" href="#">Smart Contract</a>
+<a class="text-sm text-[#90cba8] hover:text-primary" href="#">Support</a>
+<a class="text-sm text-[#90cba8] hover:text-primary" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

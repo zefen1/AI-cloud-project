@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck DApp Homepage V2</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102217",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-white overflow-x-hidden">
+<div class="relative min-h-screen w-full flex flex-col">
+<!-- Full Screen Background with Overlay -->
+<div class="absolute inset-0 z-0 w-full h-full">
+<div class="absolute inset-0 bg-black/60 z-10"></div> <!-- Dark Overlay for text contrast -->
+<div class="w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-1000" data-alt="Stunning aerial view of tropical islands and turquoise ocean water representing travel destinations" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwM7fwcRN_HI9ihtsARD28bvnYj_cWsJoV8ShY8lnCX-MInypAujHltV3RD6cwx8Oi7tBc2L30dwL1ZurzXydqbQAkUOQLI3k-rr5IVgTsNTJ96UPp_jlkrEod-vsDE0ajr03GcI3jjdU_EFw32u2b28NVZzjXGp6HRyLNBmupIVTbzV9-hcMbpdEAhboF745rUsIpmLOUuyr8ar_DJ1FQKGT4L6bWnQR0-87kyuuhOFLycMRG_71P_-Y-J3uQelGRZ8Bt74T9bfRS');">
+</div>
+</div>
+<!-- Main Content Wrapper -->
+<div class="relative z-20 flex flex-col min-h-screen">
+<!-- Header / Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap px-10 py-5 border-b border-white/10 bg-black/20 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+</div>
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">TravelCheck</h2>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 transition-colors text-[#111814] text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(37,244,120,0.4)]">
+<span class="material-symbols-outlined mr-2 text-lg">account_balance_wallet</span>
+<span class="truncate">Connect Wallet</span>
+</button>
+</header>
+<!-- Center Content: Hero Cards -->
+<main class="flex-1 flex items-center justify-center px-4 py-10">
+<div class="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 md:px-12">
+<!-- Card 1: Daily Task -->
+<div class="group flex flex-col rounded-xl overflow-hidden bg-[#102217]/80 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(37,244,120,0.15)] transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Digital calendar and clock interface showing daily progress" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAEQNyit1ggzuFa3UAlJA2tG7wfHVeg_Gj0zDg4vVdvxIS_EfKSgSY7Ds7z84ZS4oGbj04lM_AkzoavjolVCv1fSh4XkSR7821cQ73HtFmYTpBBgOX96dhEfd1PhoLiB9te6t9yJ8AUG14ZDWLI0cyaPZWbjVLl0giiUtRCM2eaDUOOWO7Z9GnZXNIXVthW9wyzMn3gBD2H8s2Pg9R5QtetJU8l72Cs-itryLlIzi2QNKtGwKfN5DIYpxNKead2hogdgw37CHc7E_xr');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#102217] to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_available</span>
+<span class="text-white font-bold text-lg">Daily Mode</span>
+</div>
+</div>
+<div class="flex flex-col p-6 gap-4">
+<div>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">每日任务打卡</h3>
+<p class="text-[#9cbaa8] text-base font-normal leading-relaxed">
+                                    Complete simple daily actions to earn TC tokens. Keep your streak alive for bonus rewards.
+                                </p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full flex cursor-pointer items-center justify-center rounded-lg h-12 px-4 bg-primary text-[#111814] text-base font-bold leading-normal hover:bg-white hover:text-black transition-colors">
+<span class="truncate">开始打卡</span>
+<span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Attraction Task -->
+<div class="group flex flex-col rounded-xl overflow-hidden bg-[#102217]/80 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(37,244,120,0.15)] transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Collage of famous world landmarks like Eiffel Tower and Great Wall" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCc5GMAagNu-qi4686atbzhuyT3GlYhPOp3XKHPt4jE2fL27bzOZr02aFfw7vAypQtQkEWi0jxYWm3wyFEiBsDC77NXt6cI8UygFYsuyjSfoNUDpDFEQ5FuQH75xGlxZl2DGVhBFGm3Wp2v6r1UpsrO1yI3j8qD61loT2x2Hl-DoDwaSc6Gg7WrIMOP_xd9ZfmwomKQr2prPFRnq1M8DzOsE7S2dUdZBLW22yG00n642GugqR02nPtavCT9Io5JIleeBPNcfSU9U5xQ');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#102217] to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-white font-bold text-lg">Explore Mode</span>
+</div>
+</div>
+<div class="flex flex-col p-6 gap-4">
+<div>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">景点任务打卡</h3>
+<div class="flex flex-col gap-1">
+<p class="text-[#9cbaa8] text-base font-normal leading-relaxed">Visit specific landmarks to unlock NFT badges.</p>
+<div class="flex items-center gap-2 mt-2 text-sm text-primary/80">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>Popular: Eiffel Tower, Great Wall, Bali Swing</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full flex cursor-pointer items-center justify-center rounded-lg h-12 px-4 bg-transparent border border-primary text-primary text-base font-bold leading-normal hover:bg-primary hover:text-[#111814] transition-colors">
+<span class="truncate">查看任务</span>
+<span class="material-symbols-outlined ml-2 text-sm">map</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Stats -->
+<footer class="w-full bg-black/40 backdrop-blur-md border-t border-white/5 py-6">
+<div class="max-w-[1200px] mx-auto px-6 md:px-12">
+<div class="flex flex-wrap gap-4 justify-between items-center">
+<div class="flex min-w-[200px] flex-1 items-center gap-4 rounded-lg p-4 bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+<div class="p-3 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9cbaa8] text-sm font-medium leading-normal">Global Participants</p>
+<p class="text-white tracking-tight text-2xl font-bold leading-tight">12,450</p>
+</div>
+</div>
+<div class="flex min-w-[200px] flex-1 items-center gap-4 rounded-lg p-4 bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+<div class="p-3 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9cbaa8] text-sm font-medium leading-normal">Tasks Completed</p>
+<p class="text-white tracking-tight text-2xl font-bold leading-tight">85,200</p>
+</div>
+</div>
+<div class="flex min-w-[200px] flex-1 items-center gap-4 rounded-lg p-4 bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+<div class="p-3 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#9cbaa8] text-sm font-medium leading-normal">Today's Active</p>
+<p class="text-white tracking-tight text-2xl font-bold leading-tight">3,100</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
