@@ -11,6 +11,8 @@ on:
 jobs:
   notify-task-update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout 代码
