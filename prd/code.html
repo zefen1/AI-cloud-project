@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelCheck DApp</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f478",
+                        "primary-hover": "#1ee06a",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102217",
+                        "glass": "rgba(16, 34, 23, 0.6)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop')",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Glassmorphism */
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Neon Glow Animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(37, 244, 120, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(37, 244, 120, 0.6); }
+        }
+        .animate-glow {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="font-display text-white antialiased selection:bg-primary selection:text-background-dark overflow-hidden">
+<!-- Main Container with Full Screen Background -->
+<div class="relative min-h-screen w-full flex flex-col bg-background-dark bg-hero-pattern bg-cover bg-center bg-no-repeat" data-alt="Epic landscape with mountains and winding road representing travel journey">
+<!-- Top Navigation -->
+<header class="w-full px-6 py-6 z-20">
+<div class="mx-auto max-w-7xl flex items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary">
+<span class="material-symbols-outlined text-2xl">public</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-white drop-shadow-md">TravelCheck</h1>
+</div>
+<!-- Wallet Connection -->
+<button class="group flex items-center gap-2 h-10 px-5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-all duration-300">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform text-xl">account_balance_wallet</span>
+<span class="text-sm font-bold tracking-wide">Connect Wallet</span>
+</button>
+</div>
+</header>
+<!-- Hero Content (Centered) -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 relative z-10 w-full max-w-7xl mx-auto text-center">
+<div class="flex flex-col items-center gap-6 max-w-3xl animate-fade-in-up">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider backdrop-blur-sm mb-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    Live on Mainnet
+                </div>
+<h2 class="text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 drop-shadow-lg">
+                    CAPTURE YOUR <br/> JOURNEY
+                </h2>
+<p class="text-lg md:text-xl text-gray-200 font-medium max-w-lg leading-relaxed drop-shadow-md">
+                    Earn rewards for every destination you visit. Join the decentralized travel network today.
+                </p>
+<button class="mt-4 flex items-center gap-3 bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 rounded-full font-bold text-lg tracking-wide transition-all duration-300 hover:scale-105 animate-glow shadow-[0_0_20px_rgba(37,244,120,0.4)]">
+<span class="material-symbols-outlined">where_to_vote</span>
+<span>立即打卡</span>
+</button>
+</div>
+</main>
+<!-- Stats Footer (Bottom) -->
+<footer class="w-full px-4 pb-8 pt-4 z-20">
+<div class="mx-auto max-w-7xl">
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Stat Card 1 -->
+<div class="glass-panel rounded-xl p-5 flex items-center gap-4 hover:bg-black/50 transition-colors cursor-default group">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div class="flex flex-col">
+<span class="text-gray-300 text-sm font-medium">全球参与者</span>
+<span class="text-white text-2xl font-bold font-display tracking-tight">12,450</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-panel rounded-xl p-5 flex items-center gap-4 hover:bg-black/50 transition-colors cursor-default group">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div class="flex flex-col">
+<span class="text-gray-300 text-sm font-medium">里程碑达成者</span>
+<span class="text-white text-2xl font-bold font-display tracking-tight">3,200</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="glass-panel rounded-xl p-5 flex items-center gap-4 hover:bg-black/50 transition-colors cursor-default group">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined">today</span>
+</div>
+<div class="flex flex-col">
+<span class="text-gray-300 text-sm font-medium">今日打卡</span>
+<div class="flex items-center gap-2">
+<span class="text-primary text-2xl font-bold font-display tracking-tight">458</span>
+<span class="text-xs text-primary/80 bg-primary/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">trending_up</span>
+                                    +12%
+                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
