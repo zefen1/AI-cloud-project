@@ -1,0 +1,92 @@
+name: 检测任务更新并通知
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'task.md'
+  workflow_dispatch:
+
+jobs:
+  notify-task-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 检查 task.md 是否有变化
+        id: check_task
+        run: |
+          if git diff HEAD^ HEAD --name-only | grep -q "task.md"; then
+            echo "task_changed=true" >> $GITHUB_OUTPUT
+            echo "✅ task.md 有更新"
+          else
+            echo "task_changed=false" >> $GITHUB_OUTPUT
+            echo "⏭️  task.md 无变化"
+          fi
+
+      - name: 创建任务通知文件
+        if: steps.check_task.outputs.task_changed == 'true'
+        run: |
+          echo "📋 创建任务通知..."
+
+          # 创建通知目录
+          mkdir -p .claude/tasks
+
+          # 获取任务内容
+          TASK_CONTENT=$(cat task.md)
+          TIMESTAMP=$(date -Iseconds)
+          COMMIT_SHA=$(git rev-parse HEAD)
+          COMMIT_AUTHOR=$(git log -1 --pretty=format:'%an')
+
+          # 创建任务通知 JSON
+          cat > .claude/tasks/pending-task.json <<EOF
+          {
+            "timestamp": "$TIMESTAMP",
+            "commit": "$COMMIT_SHA",
+            "author": "$COMMIT_AUTHOR",
+            "status": "pending",
+            "task_content": $(echo "$TASK_CONTENT" | jq -Rs .)
+          }
+          EOF
+
+          echo "✅ 任务通知已创建"
+          cat .claude/tasks/pending-task.json
+
+      - name: 提交通知文件
+        if: steps.check_task.outputs.task_changed == 'true'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          git add .claude/tasks/pending-task.json
+
+          if git diff --cached --quiet; then
+            echo "⏭️  没有变化需要提交"
+          else
+            git commit -m "🔔 新任务通知: $(head -1 task.md | cut -c1-50)"
+            git push
+            echo "✅ 任务通知已提交"
+          fi
+
+      - name: 显示下一步操作
+        if: steps.check_task.outputs.task_changed == 'true'
+        run: |
+          echo ""
+          echo "=========================================="
+          echo "✅ 任务已记录！"
+          echo "=========================================="
+          echo ""
+          echo "📋 任务内容:"
+          cat task.md
+          echo ""
+          echo "🤖 Claude Code 会在下次启动时自动检测并执行"
+          echo ""
+          echo "或者手动触发:"
+          echo "  1. 拉取最新代码: git pull"
+          echo "  2. 告诉 Claude: '执行待处理的任务'"
+          echo ""
