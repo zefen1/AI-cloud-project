@@ -35,10 +35,23 @@ class ProjectMonitor:
             capture_output=True
         )
 
+    def get_current_branch(self):
+        """获取当前分支名"""
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=self.repo_path,
+            capture_output=True,
+            text=True
+        )
+        return result.stdout.strip()
+
     def get_new_commits(self):
         """获取新的提交"""
+        current_branch = self.get_current_branch()
+        remote_branch = f"origin/{current_branch}"
+
         result = subprocess.run(
-            ["git", "log", f"{self.last_commit}..origin/HEAD",
+            ["git", "log", f"{self.last_commit}..{remote_branch}",
              "--pretty=format:%H|%an|%ae|%s|%ci"],
             cwd=self.repo_path,
             capture_output=True,
