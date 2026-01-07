@@ -1,0 +1,169 @@
+name: 自动执行任务
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'task.md'
+  workflow_dispatch:
+
+jobs:
+  check-and-execute-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 检查 task.md 是否有变化
+        id: check_task
+        run: |
+          if git diff HEAD^ HEAD --name-only | grep -q "task.md"; then
+            echo "task_changed=true" >> $GITHUB_OUTPUT
+            echo "✅ task.md 有更新"
+          else
+            echo "task_changed=false" >> $GITHUB_OUTPUT
+            echo "⏭️  task.md 无变化"
+          fi
+
+      - name: 获取 task.md 的变更内容
+        if: steps.check_task.outputs.task_changed == 'true'
+        id: get_task
+        run: |
+          echo "📋 读取 task.md 内容..."
+          TASK_CONTENT=$(cat task.md)
+          echo "task_content<<EOF" >> $GITHUB_OUTPUT
+          echo "$TASK_CONTENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "当前任务："
+          echo "$TASK_CONTENT"
+
+      - name: 设置 Node.js
+        if: steps.check_task.outputs.task_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 调用 Claude API 执行任务
+        if: steps.check_task.outputs.task_changed == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TASK_CONTENT: ${{ steps.get_task.outputs.task_content }}
+        run: |
+          echo "🤖 正在调用 Claude API 分析任务..."
+
+          # 创建临时执行脚本
+          cat > execute_task.mjs <<'SCRIPT'
+          import Anthropic from "@anthropic-ai/sdk";
+
+          const client = new Anthropic({
+            apiKey: process.env.ANTHROPIC_API_KEY,
+          });
+
+          const taskContent = process.env.TASK_CONTENT;
+
+          console.log("📋 任务内容:", taskContent);
+          console.log("\n🤖 Claude 正在分析并生成执行计划...\n");
+
+          const message = await client.messages.create({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 4000,
+            messages: [{
+              role: "user",
+              content: \`你是一个项目助手。用户在 task.md 中描述了新任务：
+
+          \${taskContent}
+
+          请分析这个任务并生成：
+          1. 任务拆解（具体步骤）
+          2. 需要创建的文件和代码
+          3. 执行命令
+
+          以 JSON 格式返回：
+          {
+            "summary": "任务总结",
+            "steps": ["步骤1", "步骤2"],
+            "files": [
+              {"path": "文件路径", "content": "文件内容"}
+            ],
+            "commands": ["命令1", "命令2"]
+          }\`
+            }]
+          });
+
+          const response = message.content[0].text;
+          console.log(response);
+
+          // 保存执行计划
+          import fs from 'fs';
+          fs.writeFileSync('execution_plan.json', response);
+          SCRIPT
+
+          # 安装依赖并执行
+          npm install @anthropic-ai/sdk
+          node execute_task.mjs
+
+      - name: 创建功能分支并执行计划
+        if: steps.check_task.outputs.task_changed == 'true'
+        run: |
+          echo "🔧 开始执行任务..."
+
+          # 配置 git
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          # 创建功能分支
+          BRANCH_NAME="auto-task-$(date +%s)"
+          git checkout -b "$BRANCH_NAME"
+
+          # 读取执行计划
+          if [ -f execution_plan.json ]; then
+            echo "📄 执行计划已生成"
+            cat execution_plan.json
+
+            # 这里可以根据 execution_plan.json 执行具体操作
+            # 例如：创建文件、运行命令等
+
+            # 提交更改
+            if [ -n "$(git status --porcelain)" ]; then
+              git add .
+              git commit -m "🤖 自动执行任务: $(head -1 task.md)"
+              git push origin "$BRANCH_NAME"
+
+              echo "✅ 已推送到分支: $BRANCH_NAME"
+            fi
+          fi
+
+      - name: 创建 Pull Request
+        if: steps.check_task.outputs.task_changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH_NAME="auto-task-$(date +%s)"
+
+          gh pr create \
+            --title "🤖 自动执行任务: $(head -1 task.md)" \
+            --body "## 任务内容
+
+          \`\`\`
+          $(cat task.md)
+          \`\`\`
+
+          ## 执行结果
+
+          由 GitHub Actions 自动生成并执行。
+
+          请审核后合并。
+          " \
+            --base "${{ github.ref_name }}" \
+            --head "$BRANCH_NAME" || echo "⚠️  PR 创建失败或已存在"
+
+      - name: 通知执行完成
+        if: steps.check_task.outputs.task_changed == 'true'
+        run: |
+          echo "✅ 任务执行完成！"
+          echo "📝 已创建 Pull Request，等待审核"
