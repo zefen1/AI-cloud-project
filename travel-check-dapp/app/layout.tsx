@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import '@rainbow-me/rainbowkit/styles.css';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
   title: "TravelCheck - 去中心化旅行打卡 DApp",
@@ -20,7 +22,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

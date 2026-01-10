@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function Header() {
   return (
@@ -52,10 +53,7 @@ export default function Header() {
           >
             <span className="material-symbols-outlined">person</span>
           </Link>
-          <button className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-background-dark px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(37,244,120,0.4)]">
-            <span className="material-symbols-outlined text-base">wallet</span>
-            <span>Connect Wallet</span>
-          </button>
+          <ConnectButton />
         </div>
       </div>
     </header>
