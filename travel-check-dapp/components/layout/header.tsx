@@ -20,6 +20,12 @@ export default function Header() {
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
+            href="/staking"
+            className="text-sm text-gray-400 hover:text-primary transition-colors"
+          >
+            质押
+          </Link>
+          <Link
             href="/daily-checkin/calendar"
             className="text-sm text-gray-400 hover:text-primary transition-colors"
           >
