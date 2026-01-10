@@ -44,7 +44,7 @@ export default function CalendarPage() {
       <header className="w-full px-6 py-6 border-b border-white/10">
         <div className="mx-auto max-w-7xl flex items-center gap-4">
           <Link
-            href="/daily-checkin/stake"
+            href="/"
             className="flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-all duration-300"
           >
             <span className="material-symbols-outlined">arrow_back</span>
