@@ -26,8 +26,24 @@
 
 body {
   background: var(--background-dark);
-  color: var(--foreground);
+  color: #ffffff;
   font-family: 'Noto Sans SC', 'Space Grotesk', sans-serif;
+}
+
+/* 文字颜色 */
+* {
+  color: #ffffff;
+}
+
+/* 选中文字 */
+::selection {
+  background-color: #25f478;
+  color: #102217;
+}
+
+::-moz-selection {
+  background-color: #25f478;
+  color: #102217;
 }
 
 /* Glassmorphism effect */
