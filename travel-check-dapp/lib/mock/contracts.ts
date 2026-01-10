@@ -18,6 +18,7 @@ export interface StakeInfo {
 export interface CheckInRecord {
   timestamp: number;
   content: string;
+  dataHash: string; // IPFS hash of the check-in data (text + image)
   redPacket: number;
 }
 
@@ -78,7 +79,7 @@ export const mockDailyCheckIn = {
     await new Promise(resolve => setTimeout(resolve, 1000)); // 模拟交易延迟
   },
 
-  async checkIn(content: string): Promise<number> {
+  async checkIn(content: string, dataHash: string): Promise<number> {
     const stakeInfo = this.getStakeInfo();
     if (!stakeInfo) throw new Error('No active stake');
 
@@ -105,6 +106,7 @@ export const mockDailyCheckIn = {
     records.push({
       timestamp: Date.now(),
       content,
+      dataHash, // IPFS hash
       redPacket,
     });
     localStorage.setItem(STORAGE_KEYS.CHECKIN_RECORDS, JSON.stringify(records));

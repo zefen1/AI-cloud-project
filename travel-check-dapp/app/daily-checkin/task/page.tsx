@@ -2,26 +2,94 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import ImageUpload from '@/components/checkin/image-upload';
+import {
+  uploadImageToIPFS,
+  uploadCheckInDataToIPFS,
+  prepareOnChainData,
+  type CheckInData
+} from '@/lib/utils/ipfs';
 
 export default function TaskPage() {
   const [content, setContent] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showRedPacket, setShowRedPacket] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState('');
 
   const minWords = 200;
   const currentWords = content.length;
   const isValid = currentWords >= minWords;
 
+  const handleImageSelect = (file: File) => {
+    setSelectedImage(file);
+
+    // 创建预览
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleImageRemove = () => {
+    setSelectedImage(null);
+    setImagePreview('');
+  };
+
   const handleSubmit = async () => {
     if (!isValid) return;
 
     setIsSubmitting(true);
+    setUploadProgress('准备上传数据...');
 
-    // TODO: 调用智能合约提交打卡内容
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      let imageHash: string | undefined;
 
-    setIsSubmitting(false);
-    setShowRedPacket(true);
+      // 1. 如果有图片，先上传图片到 IPFS
+      if (selectedImage) {
+        setUploadProgress('正在上传图片到 IPFS...');
+        imageHash = await uploadImageToIPFS(selectedImage);
+        console.log('📸 图片 IPFS Hash:', imageHash);
+      }
+
+      // 2. 组合打卡数据
+      const checkInData: CheckInData = {
+        text: content,
+        imageHash,
+        timestamp: Date.now(),
+        // 可以添加位置信息（如果需要）
+        // location: { lat: 0, lng: 0 }
+      };
+
+      // 3. 上传打卡数据到 IPFS
+      setUploadProgress('正在上传打卡数据到 IPFS...');
+      const dataHash = await uploadCheckInDataToIPFS(checkInData);
+      console.log('📝 打卡数据 IPFS Hash:', dataHash);
+
+      // 4. 准备链上数据
+      const onChainData = prepareOnChainData(dataHash);
+      console.log('⛓️  链上数据:', onChainData);
+
+      // 5. 调用智能合约提交
+      setUploadProgress('正在提交到区块链...');
+
+      // 导入 mock 合约并调用
+      const { mockDailyCheckIn } = await import('@/lib/mock/contracts');
+      await mockDailyCheckIn.checkIn(content, onChainData);
+
+      console.log('✅ 打卡成功！链上数据已保存:', onChainData);
+
+      setIsSubmitting(false);
+      setUploadProgress('');
+      setShowRedPacket(true);
+    } catch (error) {
+      console.error('❌ 提交失败:', error);
+      alert('提交失败，请重试');
+      setIsSubmitting(false);
+      setUploadProgress('');
+    }
   };
 
   const handleClaimRedPacket = () => {
@@ -104,26 +172,65 @@ export default function TaskPage() {
             )}
           </div>
 
-          {/* 提交按钮 */}
-          <button
-            onClick={handleSubmit}
-            disabled={!isValid || isSubmitting}
-            className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 rounded-full font-bold text-lg tracking-wide transition-all duration-300 hover:scale-105 animate-glow shadow-[0_0_20px_rgba(37,244,120,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:animate-none"
-          >
-            {isSubmitting ? (
-              <>
-                <span className="material-symbols-outlined animate-spin">
-                  progress_activity
+          {/* 图片上传 */}
+          <div className="glass-panel p-6 rounded-xl space-y-4">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary text-base">
+                  image
                 </span>
-                <span>提交中...</span>
-              </>
-            ) : (
-              <>
-                <span className="material-symbols-outlined">send</span>
-                <span>提交打卡</span>
-              </>
+                上传图片 (可选)
+              </label>
+              {selectedImage && (
+                <span className="text-xs text-gray-400">
+                  {(selectedImage.size / 1024 / 1024).toFixed(2)} MB
+                </span>
+              )}
+            </div>
+
+            <ImageUpload
+              onImageSelect={handleImageSelect}
+              onImageRemove={handleImageRemove}
+              preview={imagePreview}
+            />
+
+            <p className="text-xs text-gray-400">
+              💡 添加图片可以让你的攻略更加生动，图片将被上传到 IPFS 去中心化存储
+            </p>
+          </div>
+
+          {/* 提交按钮 */}
+          <div className="space-y-3">
+            <button
+              onClick={handleSubmit}
+              disabled={!isValid || isSubmitting}
+              className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 rounded-full font-bold text-lg tracking-wide transition-all duration-300 hover:scale-105 animate-glow shadow-[0_0_20px_rgba(37,244,120,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:animate-none"
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="material-symbols-outlined animate-spin">
+                    progress_activity
+                  </span>
+                  <span>提交中...</span>
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">send</span>
+                  <span>提交打卡</span>
+                </>
+              )}
+            </button>
+
+            {/* 上传进度提示 */}
+            {uploadProgress && (
+              <div className="flex items-center justify-center gap-2 text-sm text-primary animate-pulse">
+                <span className="material-symbols-outlined text-base animate-spin">
+                  sync
+                </span>
+                <span>{uploadProgress}</span>
+              </div>
             )}
-          </button>
+          </div>
 
           {/* 说明文字 */}
           <div className="glass-panel p-4 rounded-xl">
@@ -137,6 +244,14 @@ export default function TaskPage() {
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">•</span>
                 <span>内容需原创，禁止抄袭</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-0.5">•</span>
+                <span>图片和文字将上传到 IPFS 去中心化存储</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-0.5">•</span>
+                <span>链上只存储 IPFS hash，节省 Gas 费用</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">•</span>
